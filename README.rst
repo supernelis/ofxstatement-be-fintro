@@ -14,6 +14,8 @@ Users of ofxstatement have developed several plugins for their banks. They are
 listed on main `ofxstatement`_ site. If your bank is missing, you can develop
 your own plugin.
 
+.. _ofxstatement: https://github.com/kedder/ofxstatement
+
 Usage
 =====
   $ ofxstatement convert -t kbcbe input.csv output.ofx
