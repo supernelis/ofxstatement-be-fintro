@@ -9,15 +9,15 @@ version = "0.0.1"
 with open('README.rst') as f:
     long_description = f.read()
 
-setup(name='ofxstatement-sample',
+setup(name='ofxstatement-be-kbc',
       version=version,
-      author="Andrey Lebedev",
-      author_email="andrey@lebedev.lt",
-      url="https://github.com/kedder/ofxstatement",
-      description=("Sample plugin for ofxstatement"),
+      author="Pieter Lenaerts",
+      author_email="pieter.aj.lenaerts@gmail.com",
+      url="https://github.com/plenaerts/ofxstatement-be-kbc",
+      description=("ofxstatement plugin for parsing Belgian KBC bank's CSV statements to OFX"),
       long_description=long_description,
       license="GPLv3",
-      keywords=["ofx", "banking", "statement"],
+      keywords=["ofx", "banking", "statement", "kbc", "csv"],
       classifiers=[
           'Development Status :: 3 - Alpha',
           'Programming Language :: Python :: 3',
@@ -32,7 +32,7 @@ setup(name='ofxstatement-sample',
       namespace_packages=["ofxstatement", "ofxstatement.plugins"],
       entry_points={
           'ofxstatement':
-          ['sample = ofxstatement.plugins.sample:SamplePlugin']
+          ['kbcbe = ofxstatement.plugins.kbcbe:KbcBePlugin']
           },
       install_requires=['ofxstatement'],
       include_package_data=True,
