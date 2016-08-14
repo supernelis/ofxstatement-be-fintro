@@ -5,7 +5,7 @@ from ofxstatement.exceptions import ParseError
 import csv
 
 
-LINELENGTH = 11
+LINELENGTH = 10
 HEADER_START = "Rekeningnummer"
 
 class KbcBePlugin(Plugin):
@@ -44,8 +44,13 @@ class KbcBeParser(CsvStatementParser):
         """Parse given transaction line and return StatementLine object
         """
         self.line_nr += 1
-        if line[0] == HEADER_START or len(line) != LINELENGTH:
+        if line[0] == HEADER_START:
             return None
+        elif len(line) != LINELENGTH:
+            raise ParseError(self.line_nr,
+                             'Wrong number of fields in line! ' +
+                             'Found ' + str(len(line)) + ' fields ' +
+                             'but should be ' + str(LINELENGTH) + '!')
 
         # Check the account id. Each line should be for the same account!
         if self.statement.account_id:
