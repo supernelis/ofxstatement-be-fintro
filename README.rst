@@ -2,7 +2,7 @@
 Belgian KBC Bank plugin for ofxstatement
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This project provides an `ofxstatement`_ plugin for converting the Belgian KBC
+This project provides an `ofxstatement`_ plugin for converting the Belgian Fintro
 bank's CSV format statements to OFX.
 
 `ofxstatement`_ is a tool to convert proprietary bank statement to OFX format,
@@ -18,4 +18,4 @@ your own plugin.
 
 Usage
 =====
-  $ ofxstatement convert -t kbcbe input.csv output.ofx
+  $ ofxstatement convert -t fintrobe input.csv output.ofx

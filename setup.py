@@ -9,15 +9,15 @@ version = "0.0.1"
 with open('README.rst') as f:
     long_description = f.read()
 
-setup(name='ofxstatement-be-kbc',
+setup(name='ofxstatement-be-fintro',
       version=version,
-      author="Pieter Lenaerts",
-      author_email="pieter.aj.lenaerts@gmail.com",
-      url="https://github.com/plenaerts/ofxstatement-be-kbc",
-      description=("ofxstatement plugin for parsing Belgian KBC bank's CSV statements to OFX"),
+      author="Nelis Boucké",
+      author_email="nelis.boucke@gmail.com",
+      url="https://github.com/supernelis/ofxstatement-be-fintro",
+      description=("ofxstatement plugin for parsing Belgian Fintro bank's CSV statements to OFX, adapted from the KBC plugin."),
       long_description=long_description,
       license="GPLv3",
-      keywords=["ofx", "banking", "statement", "kbc", "csv"],
+      keywords=["ofx", "banking", "statement", "fintro", "csv"],
       classifiers=[
           'Development Status :: 3 - Alpha',
           'Programming Language :: Python :: 3',
@@ -32,7 +32,7 @@ setup(name='ofxstatement-be-kbc',
       namespace_packages=["ofxstatement", "ofxstatement.plugins"],
       entry_points={
           'ofxstatement':
-          ['kbcbe = ofxstatement.plugins.kbcbe:KbcBePlugin']
+          ['fintrobe = ofxstatement.plugins.fintrobe:FintroBePlugin']
           },
       install_requires=['ofxstatement'],
       include_package_data=True,
