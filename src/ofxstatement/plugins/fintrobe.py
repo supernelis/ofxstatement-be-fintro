@@ -22,7 +22,7 @@ class FintroBeParser(CsvStatementParser):
 
     date_format = "%d/%m/%Y"
 
-	# Volgnummer;Uitvoeringsdatum;Valutadatum;Bedrag;Valuta rekening;Details;Rekeningnummer
+	# Header looks like Volgnummer;Uitvoeringsdatum;Valutadatum;Bedrag;Valuta rekening;Details;Rekeningnummer
 
     mappings = {
     	'refnum': 0,
@@ -39,7 +39,7 @@ class FintroBeParser(CsvStatementParser):
     def parse_float(self, value):
         """Return a float from a string with ',' as decimal mark.
         """
-        return float(value.replace(',','.'))
+        return float(value.replace('.','').replace(',','.'))
 
     def split_records(self):
         """Return iterable object consisting of a line per transaction
