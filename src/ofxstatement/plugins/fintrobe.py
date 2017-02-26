@@ -5,28 +5,34 @@ from ofxstatement.exceptions import ParseError
 import csv
 
 
-LINELENGTH = 10
-HEADER_START = "Rekeningnummer"
+LINELENGTH = 7
+HEADER_START = "Volgnummer"
 
-class KbcBePlugin(Plugin):
-    """Belgian KBC Bank plugin for ofxstatement
+class FintroBePlugin(Plugin):
+    """Belgian Fintro Bank plugin for ofxstatement
     """
 
     def get_parser(self, filename):
         f = open(filename, 'r')
-        parser = KbcBeParser(f)
+        parser = FintroBeParser(f)
         return parser
 
 
-class KbcBeParser(CsvStatementParser):
+class FintroBeParser(CsvStatementParser):
 
     date_format = "%d/%m/%Y"
 
+	# Volgnummer;Uitvoeringsdatum;Valutadatum;Bedrag;Valuta rekening;Details;Rekeningnummer
+
     mappings = {
-        'memo': 6,
-        'date': 5,
-        'amount': 8,
+    	'refnum': 0,
+        'memo': 5,
+        'date': 1,
+        'amount': 3,
     }
+
+    account_id_index = 6
+    currency_index = 4
 
     line_nr = 0
 
@@ -54,25 +60,25 @@ class KbcBeParser(CsvStatementParser):
 
         # Check the account id. Each line should be for the same account!
         if self.statement.account_id:
-            if line[0] != self.statement.account_id:
+            if line[self.account_id_index] != self.statement.account_id:
                 raise ParseError(self.line_nr,
                                  'AccountID does not match on all lines! ' +
                                  'Line has ' + line[0] + ' but file ' +
                                  'started with ' + self.statement.account_id)
         else:
-            self.statement.account_id = line[0]
+            self.statement.account_id = line[self.account_id_index]
 
         # Check the currency. Each line should be for the same currency!
         if self.statement.currency:
-            if line[3] != self.statement.currency:
+            if line[self.currency_index] != self.statement.currency:
                 raise ParseError(self.line_nr,
                                  'Currency does not match on all lines! ' +
                                  'Line has ' + line[3] + ' but file ' +
                                  'started with ' + self.statement.currency)
         else:
-            self.statement.currency = line[3]
+            self.statement.currency = line[self.currency_index]
 
 
-        stmt_ln = super(KbcBeParser, self).parse_record(line)
+        stmt_ln = super(FintroBeParser, self).parse_record(line)
 
         return stmt_ln
