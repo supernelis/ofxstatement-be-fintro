@@ -19,3 +19,13 @@ your own plugin.
 Usage
 =====
   $ ofxstatement convert -t fintrobe input.csv output.ofx
+  
+  
+Script
+=====
+
+rm -r .venv
+make
+. .venv/bin/activate
+python setup.py develop
+ofxstatement convert -t fintrobe march.csv march.ofx
