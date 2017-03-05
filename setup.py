@@ -32,7 +32,8 @@ setup(name='ofxstatement-be-fintro',
       namespace_packages=["ofxstatement", "ofxstatement.plugins"],
       entry_points={
           'ofxstatement':
-          ['fintrobe = ofxstatement.plugins.fintrobe:FintroBePlugin']
+          ['fintrobe = ofxstatement.plugins.fintrobe:FintroBePlugin',
+           'fintrobevisa = ofxstatement.plugins.fintrobe:FintroBeVisaPlugin']
           },
       install_requires=['ofxstatement'],
       include_package_data=True,
